@@ -1,7 +1,9 @@
 var express =require('express');
 var path =require('path');
 var mongoose = require('mongoose');
-var config = require('./config/database');
+var config = require('./config/config');
+
+
 // connect to db
 
 mongoose.connect(config.database,{ useNewUrlParser: true , useUnifiedTopology: true })
@@ -22,11 +24,11 @@ app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res){
-    res.send('working')
+    res.render('index',
+    {title:'Home'})
 })
 
 //start the server
-var port = 3000;
-app.listen(port, function(){
-    console.log('server run on port ' + port)
+app.listen(config.port, function(){
+    console.log('server run on port ' + config.port)
 })
