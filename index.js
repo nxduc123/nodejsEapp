@@ -19,6 +19,8 @@ app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs');
 //set public folder
 app.use(express.static(path.join(__dirname, 'public')));
+// set global error variable
+app.locals.errors = null;
 // Body Parser middware
     // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -60,7 +62,7 @@ app.use(function (req, res, next) {
 //set router
 var pages = require('./router/pages')
 var Adminpages = require('./router/admin_pages.js')
-app.use('/admin', Adminpages)
+app.use('/admin/pages', Adminpages)
 app.use('/', pages)
 //start the server
 app.listen(config.port, function(){

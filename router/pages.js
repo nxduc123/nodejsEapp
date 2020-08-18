@@ -6,9 +6,7 @@ router.get('/', function(req, res){
     res.render('index',
     {title:'Home'})
 })
-router.get('/test', function(req, res){
-    res.send('pages test')
-})
+
 
 
 //exports
