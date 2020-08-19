@@ -8,7 +8,11 @@ const { plugin } = require('mongoose');
 
 //Get Pages Index
 router.get('/', function(req, res){
-    res.send('<a href="/admin/pages/add-page" class="btn btn-danger">ADD PAGES</a>')
+    Page.find({}).sort({sorting : 1}).exec(function (err, pages){
+        res.render('admin/pages',{
+            pages: pages
+        })
+    })
 })
 
 //Get ADD PAGE
@@ -63,7 +67,7 @@ router.post('/add-page', function(req, res){
                     title: title,
                     plug : plug,
                     content : content,
-                    sorting : 0
+                    sorting : 100
                 })
                 page.save(function(error){
                     if (err)
